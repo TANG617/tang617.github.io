@@ -17,3 +17,4 @@ permalink: :year/:month/:day/:title/
 permalink_defaults:
 
 theme: cactus
+highlight: github-gist.styl
