@@ -25,7 +25,7 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "Brief-of-ROS.md",
+                "file": "Setup-Kinect-V2-in-ROS-for-Jetson-Nano.md",
                 "mode": "source",
                 "source": false
               }
@@ -98,7 +98,7 @@
             "state": {
               "type": "backlink",
               "state": {
-                "file": "Brief-of-ROS.md",
+                "file": "Setup-Kinect-V2-in-ROS-for-Jetson-Nano.md",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -115,7 +115,7 @@
             "state": {
               "type": "outgoing-link",
               "state": {
-                "file": "Brief-of-ROS.md",
+                "file": "Setup-Kinect-V2-in-ROS-for-Jetson-Nano.md",
                 "linksCollapsed": false,
                 "unlinkedCollapsed": true
               }
@@ -138,7 +138,7 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "Brief-of-ROS.md"
+                "file": "Setup-Kinect-V2-in-ROS-for-Jetson-Nano.md"
               }
             }
           }
@@ -161,8 +161,10 @@
   },
   "active": "4b6df719ac4f1c5b",
   "lastOpenFiles": [
-    "Jetson-Orin-Nano-Setup.md",
+    "Pancake-An-Automated-Guided-Vehicle-with-ROS-and-Visual-SLAM.md",
+    "Setup-Kinect-V2-in-ROS-for-Jetson-Nano.md",
     "Brief-of-ROS.md",
+    "Jetson-Orin-Nano-Setup.md",
     "未命名.md"
   ]
 }
