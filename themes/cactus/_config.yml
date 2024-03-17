@@ -37,17 +37,15 @@ social_links:
   # -
   #   icon: facebook
   #   link: /
+  -
+    icon: mail
+    link: mailto:litang@bjtu.edu.cn
+  -
+    icon: weixin
+    label: LTAAANG
   # -
-  #   icon: mail
-  #   link: mailto:name@email.com
-  # -
-  #   icon: mastodon
-  #   label: mastodon.social
-  #   link: https://mastodon.social/@alice
-  # -
-  #   icon: mastodon
-  #   label: fosstodon.org
-  #   link: https://fosstodon.org/@alice
+  #   icon: phone-alt
+  #   link: tel://+8618161166523
 
 # Customize the overview with displaying a tagcloud on the index page.
 # Options: https://hexo.io/docs/helpers.html#tagcloud
