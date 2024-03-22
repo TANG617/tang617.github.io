@@ -30,6 +30,7 @@ There are basically 2 files we should cares about:
 - `hexo server`: preview the generated file in local server, which is usually `http://localhost:4000/`
 Another Important thing is [Hexo's Theme](https://hexo.io/themes/), most of them is a folder which should be copy to `themes` folder as installation. Some complicated theme is a complete hexo project, whose installation is basically copying your posts to their project. I am using [NexT](https://github.com/next-theme/hexo-theme-next)which is maintained by community. 
 #TODO Hexo also supports a lot of extension, I'd like to explain them later.
+
 # GitHub: deploy the blog
 Normally, there are 3 methods of hosting a website: physical server, cloud server and some hosts providers. To be clear, I have a physical server with both public IPv4 and IPv6. But to some experience, I can't place my trust on my server, especially when they are running other resource consuming services like LLM. Besides, I don't want to invest infinite time in its maintenance. cloud server seems perfect when deploying with container (like docker) is available. However, there are 2 disadvantages: first is about laws in China. Any website which is self hosted should be filing by government, which is not ban but brings lots of inconvenience. Another one is the costs. It would costs more than $300 per year.
 After a long research, there is no doubt that GitHub is of the best choices of hosting static website, especially blog. Luckily, Hexo official also thinks so. There is a very [simple tutorial on how to deploy it on GitHub Pages](https://hexo.io/docs/githab-pages).
@@ -53,7 +54,6 @@ If `CNAME` or `ALIAS` for apex domain (whose record is `USERNAME.github.io`)work
 ![image.png](https://cdn.jsdelivr.net/gh/TANG617/images/202403221500500.png)
 The blog is successfully deployed on GitHub Pages with SSL encrypted.
 ![image.png](https://cdn.jsdelivr.net/gh/TANG617/images/202403221501674.png)
-
 
 # Obsidian: write the posts
 Static website is not like something like WordPress, which includes a full database, allowing user edit the post directly from the web. Everything here should be done locally and the source code of website remains unchanged till next manual update.

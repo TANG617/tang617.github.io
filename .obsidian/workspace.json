@@ -13,9 +13,9 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "source/_posts/Blog-with-GitHub-Pages.md",
-                "mode": "source",
-                "source": false
+                "file": "source/about/index.md",
+                "mode": "preview",
+                "source": true
               }
             }
           }
@@ -85,7 +85,7 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "source/_posts/Blog-with-GitHub-Pages.md"
+                "file": "source/about/index.md"
               }
             }
           }
@@ -106,6 +106,7 @@
   },
   "active": "cc6814d7be841ace",
   "lastOpenFiles": [
+    "source/_posts/Blog-with-GitHub-Pages.md",
     "db.json",
     "public/images/logo.svg",
     "public/images/favicon-32x32-next.png",
@@ -126,7 +127,6 @@
     "public/lib/font-awesome/webfonts",
     "public/lib/font-awesome/css",
     "public/lib/velocity",
-    "public/lib/font-awesome",
     "source/projects/Setup-Kinect-V2-in-ROS-for-Jetson-Nano.md",
     "source/projects/index.md",
     "source/projects/Brief-of-ROS.md",
