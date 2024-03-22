@@ -1,12 +1,16 @@
 ---
-title: Setup Kinect V2 in ROS for Jetson Nano
-date: 2024-03-17 20:05:42
+title:
+  "{ title }": 
+date:
+  "{ date }": 
 tags:
   - JetsonNano
   - ROS
   - Kinect2
 ---
 ## Hardware Hacking
+
+
 Kinect V2 is originally designed for Microsoft XBOX One, and it's capable to connect to console in a single wire with a special port (which is similar to USB 3.0 type B, but with additional pin ). However, KinectV2 developer kit add an additional power adapter accepting 110V-220V AC and a HUB to transfer the special port to generic USB 3.0 type B, which makes it impossible to be mounted on a tiny robotic vehicle. I have done a fews tests to prove the special is just an USB 3.0 type B with additional 12V DC power in, and the HUB is just a USB 3.0 Hub, of which the only function is to trigger a LED to indicate whether USB is plugged in. (Microsoft, great works) So, I tear down the shield of KinectV2 and weld a power cable with XT-30 connector and buy a USB 3.0 type B to USB 3.0 type C cable. The total costs comes to $10, saving official adapter and HUB. It works perfectly!
 ## [libfreenect2](https://github.com/OpenKinect/libfreenect2)
 Libfreenect2 is an open source Kinect V2 driver that supports multi-platforms.
