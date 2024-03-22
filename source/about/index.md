@@ -3,5 +3,5 @@ layout: "about"
 title: "About"
 ---
 
-> Hi!
+ Hi!
 
