@@ -1,6 +1,8 @@
 ---
 title: Blog with GitHub Pages
 date: 2024-03-22 14:00:36
+tags:
+  - Blog
 ---
 # Hexo: generate static blog
 [Hexo](https://hexo.io) is one of the most well known framework with npm technical stack.
