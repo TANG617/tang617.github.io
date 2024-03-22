@@ -122,7 +122,7 @@ menu:
   #categories: /categories/ || fa fa-th
   ARCHIVE: /archives/ || fa fa-archive
   ABOUT: /about/ || fa fa-user
-  #schedule: /schedule/ || fa fa-calendar
+  # PROJECTS: /projects/ || fa fa-calendar
   #sitemap: /sitemap.xml || fa fa-sitemap
   #commonweal: /404/ || fa fa-heartbeat
 
