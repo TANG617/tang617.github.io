@@ -33,7 +33,7 @@
         "type": "tabs",
         "children": [
           {
-            "id": "77e522c4c0fee427",
+            "id": "52e5e24866159de7",
             "type": "leaf",
             "state": {
               "type": "file-explorer",
@@ -48,7 +48,7 @@
             "state": {
               "type": "search",
               "state": {
-                "query": "",
+                "query": "tag:#Hexo",
                 "matchingCase": false,
                 "explainSearch": false,
                 "collapseAll": false,
@@ -69,7 +69,7 @@
       }
     ],
     "direction": "horizontal",
-    "width": 300
+    "width": 200
   },
   "right": {
     "id": "b6e360027c5466d3",
@@ -79,46 +79,6 @@
         "id": "1960ebb7714b3f11",
         "type": "tabs",
         "children": [
-          {
-            "id": "cb52b6c93ed5814c",
-            "type": "leaf",
-            "state": {
-              "type": "backlink",
-              "state": {
-                "file": "source/_posts/Blog-with-GitHub-Pages.md",
-                "collapseAll": false,
-                "extraContext": false,
-                "sortOrder": "alphabetical",
-                "showSearch": false,
-                "searchQuery": "",
-                "backlinkCollapsed": false,
-                "unlinkedCollapsed": true
-              }
-            }
-          },
-          {
-            "id": "27783f62d81a9086",
-            "type": "leaf",
-            "state": {
-              "type": "outgoing-link",
-              "state": {
-                "file": "source/_posts/Blog-with-GitHub-Pages.md",
-                "linksCollapsed": false,
-                "unlinkedCollapsed": true
-              }
-            }
-          },
-          {
-            "id": "0fea680d0af24249",
-            "type": "leaf",
-            "state": {
-              "type": "tag",
-              "state": {
-                "sortOrder": "frequency",
-                "useHierarchy": true
-              }
-            }
-          },
           {
             "id": "1f825a65b284c8cf",
             "type": "leaf",
@@ -138,27 +98,26 @@
   },
   "left-ribbon": {
     "hiddenItems": {
-      "switcher:打开快速切换": false,
-      "graph:查看关系图谱": false,
-      "canvas:新建白板": false,
-      "daily-notes:打开/创建今天的日记": false,
       "templates:插入模板": false,
       "command-palette:打开命令面板": false,
-      "attachment-uploader:上传附件": false
+      "workspaces:管理工作区布局": false,
+      "daily-notes:打开/创建今天的日记": false
     }
   },
   "active": "cc6814d7be841ace",
   "lastOpenFiles": [
     "source/_posts/Brief-of-ROS.md",
+    "source/_posts/Pancake-An-Automated-Guided-Vehicle-with-ROS-and-Visual-SLAM.md",
+    "source/_posts/Jetson-Orin-Nano-Setup.md",
+    "source/_posts/Setup-Kinect-V2-in-ROS-for-Jetson-Nano.md",
+    "source/_posts/90-1.jpeg",
+    "source/_posts/Screenshot 2024-03-21 at 19.17.09.png",
     "source/_posts/Blog-with-GitHub-Pages.md",
     "source/about/index.md",
     "template",
     "scaffolds/page.md",
     "source/_posts/未命名.md",
     "scaffolds/post.md",
-    "source/_posts/Setup-Kinect-V2-in-ROS-for-Jetson-Nano.md",
-    "source/_posts/Pancake-An-Automated-Guided-Vehicle-with-ROS-and-Visual-SLAM.md",
-    "source/_posts/Jetson-Orin-Nano-Setup.md",
     "scaffolds/draft.md",
     "未命名.canvas"
   ]

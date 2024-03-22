@@ -1,8 +1,6 @@
 ---
-title:
-  "{ title }": 
-date:
-  "{ date }": 
+title: Setup Kinect V2 in ROS for Jetson Nano
+date: 2024-03-17 20:00:36
 tags:
   - JetsonNano
   - ROS
