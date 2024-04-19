@@ -1,5 +1,5 @@
 ---
-title: MODBUS and Serial Bus
+title: MODBUS Protocol
 date: 2024-04-18 10:45:38
 ---
 ## Serial Communications
