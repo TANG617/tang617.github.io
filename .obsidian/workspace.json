@@ -13,7 +13,7 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "source/_posts/MODBUS Protocol.md",
+                "file": "source/_posts/STM32 SystemClock Modified When Debugging with OpenOCD.md",
                 "mode": "source",
                 "backlinks": false,
                 "source": false
@@ -86,7 +86,7 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "source/_posts/MODBUS Protocol.md"
+                "file": "source/_posts/STM32 SystemClock Modified When Debugging with OpenOCD.md"
               }
             }
           }
@@ -106,8 +106,10 @@
   },
   "active": "cccb026872eb99e7",
   "lastOpenFiles": [
-    "scaffolds/post.md",
     "source/_posts/MODBUS Protocol.md",
+    "source/_posts/STM32 SystemClock Modified When Debugging with OpenOCD.md",
+    "source/_posts/CAN Protocol.md",
+    "scaffolds/post.md",
     "source/_posts/Setup-Kinect-V2-in-ROS-for-Jetson-Nano.md",
     "source/_posts/Jetson-Orin-Nano-Setup.md",
     "source/_posts/Pancake-An-Automated-Guided-Vehicle-with-ROS-and-Visual-SLAM.md",
@@ -150,8 +152,6 @@
     "node_modules/hexo-theme-icarus/node_modules/dom-serializer/node_modules/entities/readme.md",
     "node_modules/hexo-theme-icarus/node_modules/hexo-component-inferno/node_modules/inferno-create-element/readme.md",
     "node_modules/hexo-theme-icarus/node_modules/hexo-component-inferno/node_modules/inferno-create-element/LICENSE.md",
-    "node_modules/hexo-theme-icarus/node_modules/domhandler/readme.md",
-    "node_modules/hexo-theme-icarus/node_modules/inferno-vnode-flags/README.md",
     "未命名.canvas"
   ]
 }
