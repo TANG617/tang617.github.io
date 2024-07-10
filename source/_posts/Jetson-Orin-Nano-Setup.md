@@ -67,6 +67,10 @@ sudo apt reinstall docker-ce
 ```
 
 ### Can't access Wi-Fi
+Reference: https://forums.developer.nvidia.com/t/jetpack-6-wifi-slow-startup-with-backport-iwlwifi-dkms/297967/7
+tldr: Use `backports-5.15-*` instead of the latest `backports-6.*`
+
+**Below methods are deprecated**
 [Source](https://forums.developer.nvidia.com/t/cant-access-wifi-on-jetson-orin-nano-running-jetpack-6-dev/278835/3)
 The installed AC8260 card should work immediately and the driver should be preinstalled in the Ubuntu( Indeed )
 The solution is try to install `backport-iwlwifi-dkms` and reboot.
