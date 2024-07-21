@@ -19,8 +19,22 @@
                 "source": false
               }
             }
+          },
+          {
+            "id": "8cf967e2cdd14481",
+            "type": "leaf",
+            "state": {
+              "type": "markdown",
+              "state": {
+                "file": "source/_posts/Start-SLAM-with-RTAB-MAP.md",
+                "mode": "source",
+                "backlinks": false,
+                "source": false
+              }
+            }
           }
-        ]
+        ],
+        "currentTab": 1
       }
     ],
     "direction": "vertical"
@@ -70,7 +84,7 @@
       }
     ],
     "direction": "horizontal",
-    "width": 200
+    "width": 209.5
   },
   "right": {
     "id": "b6e360027c5466d3",
@@ -86,7 +100,7 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "source/_posts/Setup-Intel-RealSense-D455-with-Jetson-Orin-Nano.md"
+                "file": "source/_posts/Start-SLAM-with-RTAB-MAP.md"
               }
             }
           }
@@ -104,8 +118,10 @@
       "daily-notes:打开/创建今天的日记": false
     }
   },
-  "active": "43b437e0d52a9914",
+  "active": "8cf967e2cdd14481",
   "lastOpenFiles": [
+    "source/_posts/Blog-with-GitHub-Pages.md",
+    "source/_posts/Start-SLAM-with-RTAB-MAP.md",
     "source/_posts/Pancake-An-Automated-Guided-Vehicle-with-ROS-and-Visual-SLAM.md",
     "source/_posts/Setup-Intel-RealSense-D455-with-Jetson-Orin-Nano.md",
     "source/_posts/Jetson-Orin-Nano-Setup.md",
@@ -116,7 +132,6 @@
     "scaffolds/post.md",
     "source/_posts/Setup-Kinect-V2-in-ROS-for-Jetson-Nano.md",
     "source/about/index.md",
-    "source/_posts/Blog-with-GitHub-Pages.md",
     "db.json",
     "public/images/logo.svg",
     "public/images/favicon-32x32-next.png",
@@ -151,7 +166,6 @@
     "node_modules/hexo-theme-icarus/node_modules/domutils/readme.md",
     "node_modules/hexo-theme-icarus/node_modules/htmlparser2/README.md",
     "node_modules/hexo-theme-icarus/node_modules/dom-serializer/README.md",
-    "node_modules/hexo-theme-icarus/node_modules/dom-serializer/node_modules/entities/readme.md",
     "未命名.canvas"
   ]
 }
