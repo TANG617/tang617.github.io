@@ -12,7 +12,8 @@ Note:
 2. ROS warp of RTAB contains the full package of RTAB. 
 ## Examples
 Some examples can be found: https://github.com/introlab/rtabmap_ros/tree/ros2/rtabmap_examples/launch
-Before the launch, make sure the camera works fine from `realsense-viewer`
+Before the launch, make sure the camera works fine from `realsense-viewer`.
+For there is no official example for RealSense D455, some tiny modifications are required.
 - For launching RealSense node:
 ```bash
 ros2 launch realsense2_camera rs_launch.py align_depth.enable:=true depth_module.depth_profile:=640x360x90 depth_module.infra_profile:=640x360x90 rgb_camera.color_profile:=480x270x90
