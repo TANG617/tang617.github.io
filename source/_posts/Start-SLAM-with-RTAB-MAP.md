@@ -1,5 +1,5 @@
 ---
-title: Start-SLAM-with-RTAB-MAP
+title: Start SLAM with RTAB MAP
 date: 2024-07-21 20:29:36
 tags:
   - IntelRealSenseD455

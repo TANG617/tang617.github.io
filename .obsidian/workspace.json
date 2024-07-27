@@ -39,7 +39,7 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "source/_posts/Isaac-ROS-Quick-Start.md",
+                "file": "source/_posts/Start-SLAM-with-RTAB-MAP.md",
                 "mode": "source",
                 "backlinks": false,
                 "source": false
@@ -113,7 +113,7 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "source/_posts/Isaac-ROS-Quick-Start.md"
+                "file": "source/_posts/Start-SLAM-with-RTAB-MAP.md"
               }
             }
           }
@@ -133,8 +133,8 @@
   },
   "active": "32f33c5e55f3a719",
   "lastOpenFiles": [
-    "source/_posts/Jetson-Orin-Nano-Setup.md",
     "source/_posts/Isaac-ROS-Quick-Start.md",
+    "source/_posts/Jetson-Orin-Nano-Setup.md",
     "source/_posts/Start-SLAM-with-RTAB-MAP.md",
     "source/_posts/Setup-Kinect-V2-in-ROS-for-Jetson-Nano.md",
     "source/_posts/Blog-with-GitHub-Pages.md",
