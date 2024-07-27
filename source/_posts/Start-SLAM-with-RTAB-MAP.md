@@ -41,3 +41,10 @@ Note:
 1. The default topics of RealSense node contains double `camera`
 2. RTAB launch with a GUI by default. set `DISPLAY=:0` or add  `export DISPLAY=:0` in `~/.bashrc` to view it.
 3. `queue_size:=20`is necessary based on my test. Or RTAB would froze in few seconds after starting.
+## SLAM with Jetson Orin
+
+- Flap the USB-C if no device was found.
+- Lower the resolution of camera to avoid lag from USB connection.
+```
+ros2 launch realsense2_camera rs_launch.py align_depth.enable:=true depth_module.depth_profile:=640x360x30 depth_module.infra_profile:=640x360x30 rgb_camera.color_profile:=480x270x30
+```

@@ -26,7 +26,20 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "source/_posts/Start-SLAM-with-RTAB-MAP.md",
+                "file": "source/_posts/Setup-Intel-RealSense-D455-with-Jetson-Orin-Nano.md",
+                "mode": "source",
+                "backlinks": false,
+                "source": false
+              }
+            }
+          },
+          {
+            "id": "32f33c5e55f3a719",
+            "type": "leaf",
+            "state": {
+              "type": "markdown",
+              "state": {
+                "file": "source/_posts/Isaac-ROS-Quick-Start.md",
                 "mode": "source",
                 "backlinks": false,
                 "source": false
@@ -34,7 +47,7 @@
             }
           }
         ],
-        "currentTab": 1
+        "currentTab": 2
       }
     ],
     "direction": "vertical"
@@ -84,7 +97,7 @@
       }
     ],
     "direction": "horizontal",
-    "width": 209.5
+    "width": 200
   },
   "right": {
     "id": "b6e360027c5466d3",
@@ -100,7 +113,7 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "source/_posts/Start-SLAM-with-RTAB-MAP.md"
+                "file": "source/_posts/Isaac-ROS-Quick-Start.md"
               }
             }
           }
@@ -118,19 +131,20 @@
       "daily-notes:打开/创建今天的日记": false
     }
   },
-  "active": "8cf967e2cdd14481",
+  "active": "32f33c5e55f3a719",
   "lastOpenFiles": [
-    "source/_posts/Blog-with-GitHub-Pages.md",
+    "source/_posts/Jetson-Orin-Nano-Setup.md",
+    "source/_posts/Isaac-ROS-Quick-Start.md",
     "source/_posts/Start-SLAM-with-RTAB-MAP.md",
+    "source/_posts/Setup-Kinect-V2-in-ROS-for-Jetson-Nano.md",
+    "source/_posts/Blog-with-GitHub-Pages.md",
     "source/_posts/Pancake-An-Automated-Guided-Vehicle-with-ROS-and-Visual-SLAM.md",
     "source/_posts/Setup-Intel-RealSense-D455-with-Jetson-Orin-Nano.md",
-    "source/_posts/Jetson-Orin-Nano-Setup.md",
     "source/_posts/MODBUS Protocol.md",
     "source/_posts/Force Sensor Test.md",
     "source/_posts/STM32 SystemClock Modified When Debugging with OpenOCD.md",
     "source/_posts/CAN Protocol.md",
     "scaffolds/post.md",
-    "source/_posts/Setup-Kinect-V2-in-ROS-for-Jetson-Nano.md",
     "source/about/index.md",
     "db.json",
     "public/images/logo.svg",
@@ -165,7 +179,6 @@
     "node_modules/hexo-theme-icarus/node_modules/entities/readme.md",
     "node_modules/hexo-theme-icarus/node_modules/domutils/readme.md",
     "node_modules/hexo-theme-icarus/node_modules/htmlparser2/README.md",
-    "node_modules/hexo-theme-icarus/node_modules/dom-serializer/README.md",
     "未命名.canvas"
   ]
 }
