@@ -3,6 +3,7 @@ title: Note with FreeRTOS Real Time Kernel Tutorial
 date: 2024-08-28 16:44:20
 tags:
 ---
+![](FreeRTOS%20Real%20Time%20Kernel%20Tutorial.pdf)
 ## Chapter 1
 ### File
 Only 3 files are necessary for the most basic FreeRTOS: `task.c`  `list.c`  `queue.c`. As for porting, additional `timer.c` `heap_n.c`  and `prtable/XX` are necessary. 

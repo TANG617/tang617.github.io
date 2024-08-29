@@ -133,6 +133,7 @@
   },
   "active": "32f33c5e55f3a719",
   "lastOpenFiles": [
+    "source/_posts/FreeRTOS Real Time Kernel Tutorial.pdf",
     "source/_posts/ROS-Package-of-CAN-Protocol.md",
     "source/_posts/Note-with-FreeRTOS-Real-Time-Kernel-Tutorial.md",
     "source/_posts/Pancake-An-Automated-Guided-Vehicle-with-ROS-and-Visual-SLAM.md",
@@ -178,7 +179,6 @@
     "node_modules/hexo-theme-icarus/node_modules/hexo-component-inferno/node_modules/inferno/README.md",
     "node_modules/hexo-theme-icarus/node_modules/hexo-component-inferno/node_modules/inferno/LICENSE.md",
     "node_modules/hexo-theme-icarus/node_modules/hexo-component-inferno/node_modules/hexo-util/README.md",
-    "node_modules/hexo-theme-icarus/node_modules/hexo-fs/node_modules/hexo-util/README.md",
     "未命名.canvas"
   ]
 }
