@@ -13,7 +13,7 @@ Isaac ROS is a distribution of ROS 2, a collection of NVIDIA-accelerated, high p
 
 The official document can be found here: https://nvidia-isaac-ros.github.io/getting_started/isaac_sim/index.html
 
-## Quick Start Setup
+## Quick Setup
 Isaac ROS requires container environment. 
 ### Nvidia Container
 Install, setup and simple validation documents: https://docs.nvidia.com/datacenter/cloud-native/container-toolkit/latest/install-guide.html
