@@ -16,5 +16,5 @@ root: /
 permalink: :year/:month/:day/:title/
 permalink_defaults:
 
-theme: next
+theme: pln
 highlight: github-gist.styl

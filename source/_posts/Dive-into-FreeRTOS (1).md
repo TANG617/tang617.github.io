@@ -1,9 +1,9 @@
 ---
-title: Note with FreeRTOS Real Time Kernel Tutorial
+title: Dive into FreeRTOS (1)
 date: 2024-08-28 16:44:20
 tags:
 ---
-![](FreeRTOS%20Real%20Time%20Kernel%20Tutorial.pdf)
+# Memory and Task Management
 ## Chapter 1
 ### File
 Only 3 files are necessary for the most basic FreeRTOS: `task.c`  `list.c`  `queue.c`. As for porting, additional `timer.c` `heap_n.c`  and `prtable/XX` are necessary. 
@@ -102,18 +102,6 @@ When configIDLE_SHOULD_YIELD is set to 1, the task selected to enter the Running
 - Tasks are never pre-empted
 - Time slicing cannot be used
 
-## Chapter 4: Queue Management
-- Used as FIFO buffer for inter-thread communication
 
-2 ways of queue behavior:
-- Queue by copy
-- Queue by reference
-and FreeRTOS uses Queue by copy
-
-## Chapter 5: Software Timer
-
-## Chapter 6: ISR Management
-## Chapter 7: Resource Management
-## Chapter 8: Event Groups
 
 
