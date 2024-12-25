@@ -58,13 +58,13 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "source/_posts/Dive-into-FreeRTOS (3).md",
+                "file": "source/_posts/Isaac-ROS-Quick-Start.md",
                 "mode": "source",
                 "backlinks": false,
                 "source": false
               },
               "icon": "lucide-file",
-              "title": "Dive-into-FreeRTOS (3)"
+              "title": "Isaac-ROS-Quick-Start"
             }
           }
         ],
@@ -140,10 +140,10 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "source/_posts/Dive-into-FreeRTOS (3).md"
+                "file": "source/_posts/Isaac-ROS-Quick-Start.md"
               },
               "icon": "lucide-list",
-              "title": "Dive-into-FreeRTOS (3) 的大纲"
+              "title": "Isaac-ROS-Quick-Start 的大纲"
             }
           }
         ]
@@ -162,8 +162,9 @@
   },
   "active": "969d3901335549fc",
   "lastOpenFiles": [
-    "source/_posts/Dive-into-FreeRTOS (2).md",
     "source/_posts/Dive-into-FreeRTOS (3).md",
+    "source/_posts/Isaac-ROS-VSLAM.md",
+    "source/_posts/Dive-into-FreeRTOS (2).md",
     "public/css/m.min.css",
     "public/css/code.scss",
     "public/css/toc.scss",
@@ -205,7 +206,6 @@
     "node_modules/es-define-property/CHANGELOG.md",
     "node_modules/pug/README.md",
     "node_modules/pug/History.md",
-    "node_modules/hexo-renderer-pug/README.md",
     "public/images/logo.svg",
     "public/images/favicon-32x32-next.png",
     "未命名.canvas"
