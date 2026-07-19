@@ -1,0 +1,26 @@
+---
+import PageLayout from "@/layouts/Base.astro";
+
+const meta = {
+	description: "About Li Tang and this technical blog.",
+	title: "About",
+};
+---
+
+<PageLayout meta={meta}>
+	<h1 class="title mb-12">About</h1>
+	<div class="prose prose-sm prose-cactus max-w-none">
+		<p>
+			Hi, I'm Li Tang. This is where I document what I learn and build across robotics,
+			embedded systems, ROS, optimization, and related engineering tools.
+		</p>
+		<p>
+			The source for this site and its articles is available on <a
+				class="cactus-link inline-block"
+				href="https://github.com/TANG617/tang617.github.io"
+				rel="noreferrer"
+				target="_blank">GitHub</a
+			>.
+		</p>
+	</div>
+</PageLayout>

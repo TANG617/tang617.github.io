@@ -1,0 +1,6 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="630" viewBox="0 0 1200 630">
+  <rect width="1200" height="630" fill="#1d1f21"/>
+  <rect x="96" y="96" width="12" height="438" rx="6" fill="#2bbc8a"/>
+  <text x="160" y="285" fill="#f1f5f9" font-family="ui-monospace, SFMono-Regular, Menlo, monospace" font-size="82" font-weight="700">Tang's Blog</text>
+  <text x="164" y="370" fill="#a1a1aa" font-family="ui-monospace, SFMono-Regular, Menlo, monospace" font-size="34">Robotics · Embedded Systems · ROS · Optimization</text>
+</svg>
