@@ -1,134 +1,127 @@
 ---
-title: MODBUS Protocol
+title: Modbus Protocol
 description: Notes on serial communication, RS-232, RS-485, UART, and Modbus protocol framing.
 publishDate: 2024-04-18T10:45:38+08:00
+updatedDate: "2026-07-19T00:00:00+08:00"
 tags:
   - Modbus
   - Serial
 ---
-## Serial Communications
-Any transmission sending one bit at a time can be called serial communication. It's one of the principle of communication, not specifying any protocol. The speed ranges from few bps to Gbps. Examples includes: CAN, RS-485/232, IIC
 
-## Protocol Stack and OSI Model
-The intact Open System Interconnection model contains 7 layers. The Internet is a good example.
-![image.png](https://cdn.jsdelivr.net/gh/TANG617/images/202404181049837.png)
-It's notable that not all 7 layers are required for any protocol. Also, the different  methods in the same layer can easily be replaced and altered.
+## Serial communication
+
+Serial communication transfers data sequentially over one or more signal lines. The term describes a broad transmission method rather than a single protocol. Examples include UART links, CAN, I2C, and serial data carried over RS-232 or RS-485 electrical interfaces.
+
+## Protocol stacks and the OSI model
+
+The Open Systems Interconnection model describes seven conceptual layers. A practical embedded protocol does not need to implement a visible counterpart to every layer.
+
+![Seven-layer OSI model](https://cdn.jsdelivr.net/gh/TANG617/images/202404181049837.png)
+
 ## RS-485 and RS-232
-They are not a so-called communication protocol, they are more like the physical layer. 
-They just refer to an electrical interface, defining signal levels, speed and etc.
 
-### RS485
-![image.png](https://cdn.jsdelivr.net/gh/TANG617/images/202404181221227.png)
-high level: +5v
+RS-485 and RS-232 primarily define electrical characteristics. They do not define Modbus addresses, register meanings, or application messages.
 
-### RS232
-TTL voltage level to 232 voltage level
-high level : +12v
-low level : -12v
+### RS-485
 
+RS-485 uses differential signaling, normally represented by the voltage difference between lines A and B. It must not be reduced to a single-ended fixed “+5 V high” value. A multidrop Modbus network commonly uses two-wire, half-duplex RS-485 with termination at both ends and biasing at one location.
+
+![RS-485 differential signaling](https://cdn.jsdelivr.net/gh/TANG617/images/202404181221227.png)
+
+### RS-232
+
+RS-232 is a point-to-point, single-ended interface using bipolar voltage ranges. Its signaling voltage is not fixed at ±12 V, and its logical polarity is inverted relative to a typical TTL UART signal. A level shifter is required between most microcontroller UART pins and an RS-232 connector.
 
 ### UART
-In OSI level terms, UART lives on layer 2, the Data link layer
-A UART contains those following components:
+
+A UART implements asynchronous character framing and typically contains:
+
 - a clock generator, usually a multiple of the bit rate to allow sampling in the middle of a bit period
 - input and output shift registers, along with the transmit/receive or FIFO buffers
 - transmit/receive control
 - read/write control logic
 
+## Modbus
 
-## MODBUS
-MODBUS is a protocol in the application layer.  There are currently 3 implementations:
-- TCP/IP over Ethernet
-- Serial Bus like RS-232/RS-485
-- MODBUS PLUS, a high speed token passing network
-Here, we emphasize the **MODBUS over Serial Line protocol**.
-![image.png](https://cdn.jsdelivr.net/gh/TANG617/images/202404190929053.png)
+Modbus defines an application protocol. Common variants include Modbus RTU and Modbus ASCII over serial lines, Modbus TCP over TCP/IP, and the legacy proprietary Modbus Plus network. This article focuses on **Modbus over Serial Line**.
 
+![Modbus variants mapped to their transports](https://cdn.jsdelivr.net/gh/TANG617/images/202404190929053.png)
 
-### Data Blocks
-The MODBUS protocol defines a simple protocol data unit (PDU) independent of the
-underlying communication layers. The mapping of MODBUS protocol on specific buses or
-network can introduce some additional fields on the application data unit (ADU).
-![image.png](https://cdn.jsdelivr.net/gh/TANG617/images/202404190930215.png)
-#### PDU (protocol data unit)
-![image.png](https://cdn.jsdelivr.net/gh/TANG617/images/202404181321885.png)
-= Function code + function data
-253 bytes max
+### PDU and ADU
 
-- Function code: `1byte`
-![image.png](https://cdn.jsdelivr.net/gh/TANG617/images/202404181124716.png)
+The protocol data unit (PDU) is independent of the underlying transport. A transport adds addressing and error-checking fields to form an application data unit (ADU).
 
-- Data: address`2bytes` + data
-#### ADU(application data unit)
-= Additional address + PDU + error check
-256bytes max(RS232/RS485) / 260bytes max(TCP)
+![Relationship between a Modbus PDU and ADU](https://cdn.jsdelivr.net/gh/TANG617/images/202404190930215.png)
 
-#### Modbus Serial Line PDU 
-= Address + PDU + CRC (or LRC)
-and PDU = Function code + data
+#### Protocol data unit
 
-- Address is slave address 
-	- maximum 247 (from 1-247)slaves
-	- 1 master, sending broadcast with address 0 (it's not master's address)
-	- slaves must accept broadcast exchanges but not respond
-- PDU is defined identically to the PDU of Modbus Application protocol
-- The Error check field with CRC/LRC: The error check methods depend on the protocol versions of the MODBUS over Serial Line, whether it is **Modbus RTU** or **Modbus ASCII**.
+The PDU consists of a one-byte function code followed by function-specific data and has a maximum length of 253 bytes.
 
-##### Modbus RTU
-RTU =  Remote Terminal Unit
-The most common implementation available for Modbus
- Modbus RTU message must be transmitted continuously without inter-character hesitations
+![Modbus PDU fields](https://cdn.jsdelivr.net/gh/TANG617/images/202404181321885.png)
 
-Modbus message:
-- 1 start bit
-- 8 bit data, LSB bit is first sent (actual payload)
-- 1 bit parity
-- 1 stop bit
+- Function code: 1 byte
+- Data: up to 252 bytes; its structure depends on the function
 
-Modbus RTU frame:
-![](https://cdn.jsdelivr.net/gh/TANG617/images/202404181316621.png)
+#### Application data unit
+
+A serial Modbus ADU is `address + PDU + error check` and is at most 256 bytes. A Modbus TCP ADU uses an MBAP header and is at most 260 bytes.
+
+#### Modbus serial-line ADU
+
+- address: 1 byte
+- PDU: function code and data
+- error check: CRC for RTU or LRC for ASCII
+
+- Server addresses range from 1 through 247.
+- Address 0 is the broadcast address, not the client's address. Servers do not respond to broadcasts.
+- Modern Modbus terminology uses **client/server**; older serial documentation often uses **master/slave**.
+
+### Modbus RTU
+
+RTU stands for Remote Terminal Unit. A message must be transmitted as a continuous stream of characters.
+
+The default RTU character format is one start bit, eight data bits sent least-significant bit first, even parity, and one stop bit. Odd parity may also be configured. When no parity is used, two stop bits maintain an 11-bit character frame.
+
+![Modbus RTU frame](https://cdn.jsdelivr.net/gh/TANG617/images/202404181316621.png)
+
 - 1 byte slave address
 - 1 byte function code
 - 0-252 bytes data
 - 2 bytes CRC
-	- CRC-16-MODBUS
-	- $x^{16}+x^{15}+x^2+1$
+- CRC-16/Modbus, transmitted low byte first; polynomial $x^{16}+x^{15}+x^2+1$
 
- The reality of the situation in more modern implementations is far from simple. Bracketing the packet is a pair of silent times—that is, periods where there is no communication on the bus. For a baud rate of 9,600, this rate is around 4 ms. The standard defines a minimum silence length, regardless of baud rate, of just under 2 ms.
+Frames are separated by at least 3.5 character times. If a gap longer than 1.5 character times occurs inside a frame, the receiver treats the frame as incomplete. Above 19,200 bit/s, the specification recommends fixed values of 750 µs for the inter-character timeout and 1.750 ms for the inter-frame delay.
 
-##### Modbus ASCII
-Use of ASCII characters for protocol communication
-Modbus ASCII frame:
-![image.png](https://cdn.jsdelivr.net/gh/TANG617/images/202404181315941.png)
-- 1 byte start with `:`(0x3A)
-- 2 bytes address
-- 2 bytes function
-- 2\*n bytes data
-- 2 bytes LRC
-- 2 bytes end with `CR/LF`(0x0D + 0x0A)
+### Modbus ASCII
 
+Modbus ASCII represents each data byte as two hexadecimal ASCII characters. A frame begins with `:` and ends with CRLF. It contains the address, function, data, and an LRC encoded as ASCII characters.
 
-#### Transaction
-![image.png](https://cdn.jsdelivr.net/gh/TANG617/images/202404190936096.png)
-Error free
-![image.png](https://cdn.jsdelivr.net/gh/TANG617/images/202404190936416.png)
-Exception response
+![Modbus ASCII frame](https://cdn.jsdelivr.net/gh/TANG617/images/202404181315941.png)
 
-#### Instance
-Server -> Client: `01 04 00 54 00 0C B0 97`
+## Transactions
+
+![Successful Modbus transaction](https://cdn.jsdelivr.net/gh/TANG617/images/202404190936096.png)
+
+![Modbus exception response](https://cdn.jsdelivr.net/gh/TANG617/images/202404190936416.png)
+
+### Example
+
+Client to server request: `01 04 00 54 00 0C B0 97`
+
 - Address: `01`
-- PDU: `04 00 54 00 0C`
-	- Function code: `04` : 读输入寄存器
-	  ![image.png](https://cdn.jsdelivr.net/gh/TANG617/images/202404191003681.png)
-	- Start address: `0x0054` 
-	- Quality of input registers: `0x000c` = 12 registers
+- PDU: `04 00 54 00 0C` - Function code: `04`, read input registers
+  ![image.png](https://cdn.jsdelivr.net/gh/TANG617/images/202404191003681.png)
+  - Start address: `0x0054`
+    - Quantity of input registers: `0x000C` = 12 registers
 - CRC: `B0 97`
 
-Client -> Server: `01 04 4E Fx_L Fx_H Fy_L Fy_H Fz_L Fz_H Mx_L Mx_H My_L My_H Mz_L Mz_H Crc_L Crc_H`
-- Address `01`
-- PDU: `04 4E Fx_L Fx_H Fy_L Fy_H Fz_L Fz_H Mx_L Mx_H My_L My_H Mz_L Mz_H` #ERROR
-- CRC: `Crc_L Crc_H`
+The response must contain a byte count of `0x18` followed by 24 data bytes because 12 registers were requested:
 
-## Reference
-[NI-What is the Modbus Protocol & How Does It Work?](https://www.ni.com/en/shop/seamlessly-connect-to-third-party-devices-and-supervisory-system/the-modbus-protocol-in-depth.html)
-[Wikipedia](https://en.wikipedia.org/wiki/Modbus)
+`01 04 18 <24 data bytes> <CRC low> <CRC high>`
+
+Each pair of data bytes represents one 16-bit input register. The application must define how those registers map to values such as forces, moments, byte order, and scaling.
+
+## References
+
+- [Modbus application protocol specification](https://www.modbus.org/docs/Modbus_Application_Protocol_V1_1b3.pdf)
+- [Modbus over Serial Line specification and implementation guide](https://www.modbus.org/docs/Modbus_over_serial_line_V1_02.pdf)

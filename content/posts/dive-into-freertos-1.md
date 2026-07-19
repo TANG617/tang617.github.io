@@ -2,107 +2,142 @@
 title: Dive into FreeRTOS (1)
 description: FreeRTOS notes on task management, kernel data types, and heap allocation strategies.
 publishDate: 2024-08-28T16:44:20+08:00
+updatedDate: "2026-07-19T00:00:00+08:00"
 tags:
   - FreeRTOS
 ---
-# Memory and Task Management
-## Chapter 1
-### File
-Only 3 files are necessary for the most basic FreeRTOS: `task.c`  `list.c`  `queue.c`. As for porting, additional `timer.c` `heap_n.c`  and `prtable/XX` are necessary. 
+
+# FreeRTOS Memory, Task, and Interrupt Management
+
+## Kernel source files
+
+A minimal FreeRTOS kernel build normally includes `tasks.c`, `queue.c`, `list.c`, a platform-specific `portable/<compiler>/<architecture>/port.c`, and one memory manager such as `heap_4.c`. Include files such as `timers.c`, `event_groups.c`, and `stream_buffer.c` when their corresponding features are enabled.
 ![image.png](https://cdn.jsdelivr.net/gh/TANG617/images/202408281646751.png)
 
-###  Data Types
-`TickType_t` is used for storing tick count to measure time. 16bits is recommended to use in 16bit and 8bit system. There is no reason to use a 16-bit type on a 32-bit architecture.
-`BaseType_t` is always defined as the most efficient data type for the architecture.Typically, this is a 32-bit type on a 32-bit architecture, a 16-bit type on a 16-bit architecture, and an 8-bit type on an 8-bit architecture.
+### Data types
 
-###  Variable Names and Function Names
-‘c’ for char, ‘s’ for int16_t (short), ‘l’ int32_t (long), and ‘x’ for BaseType_t and any other non-standard types (structures, task handles, queue handles, etc.).  If a variable is unsigned, it is also prefixed with a ‘u’. If a variable is a pointer, it is also prefixed with a ‘p’. For example, a variable of type uint8_t will be prefixed with ‘uc’, and a variable of type pointer to char will be prefixed with ‘pc’. 'v' stands for void.
+`TickType_t` stores the kernel tick count used for timeouts and delays. Its width is controlled by the port and kernel configuration; a narrower type wraps sooner and is not a universal recommendation for smaller processors.
 
-## Chapter 2: Heap Memory Management
-###  malloc and free are not that suitable
-1. not always available on mcu
-2. large implementation
-3. rarely thread -safe
-4. not deterministic in time
-5. fragmentation
+`BaseType_t` is defined as an efficient signed type for the target architecture. It is typically 32-bit on a 32-bit architecture, 16-bit on a 16-bit architecture, and 8-bit on an 8-bit architecture.
 
-### Use pvPortMalloc() and vPortFree() instead
-5 examples of them are defined in `heap_x.c`.
-When FreeRTOS requires RAM, instead of calling malloc(), it calls pvPortMalloc(). When RAM is being freed, instead of calling free(), the kernel calls vPortFree(). pvPortMalloc() has the same prototype as the standard C library malloc() function, and vPortFree() has the same prototype as the standard C library free() function.
+### Variable and function names
 
-#### Heap1
+The kernel's naming convention uses prefixes such as `c` for `char`, `s` for `int16_t`, `l` for `int32_t`, and `x` for `BaseType_t` or other non-standard types. An unsigned variable also receives a `u` prefix, while a pointer receives a `p` prefix. For example, a `uint8_t` variable uses `uc`, a pointer to `char` uses `pc`, and `v` denotes `void`.
+
+## Heap memory management
+
+### Why not use the standard `malloc()` and `free()` directly?
+
+Depending on the C library and target, they may be unavailable, relatively large, non-thread-safe, non-deterministic, or prone to fragmentation.
+
+### Use `pvPortMalloc()` and `vPortFree()`
+
+FreeRTOS provides five sample memory-manager implementations in `heap_1.c` through `heap_5.c`.
+The kernel calls `pvPortMalloc()` when it needs dynamic memory and `vPortFree()` when the selected allocator supports deallocation. Their interfaces resemble the standard C library's `malloc()` and `free()` functions.
+
+#### `heap_1`
+
 ![image.png](https://cdn.jsdelivr.net/gh/TANG617/images/202408281713141.png)
 
-- only create tasks and other kernel objects before the scheduler has been started
-- the task or kernel object should never be deleted
+- supports allocation but not deallocation
+- objects can be created after the scheduler starts, provided they are never deleted and enough heap remains
 
-#### Heap2
+#### `heap_2`
+
 ![image.png](https://cdn.jsdelivr.net/gh/TANG617/images/202408281954329.png)
-- be used for backward compatibility, but its use is not recommended for new designs.
-- The best fit algorithm ensures that pvPortMalloc() uses the free block of memory that is closest in size to the number of bytes requested.
-- Heap_2 is suitable for an application that creates and deletes tasks repeatedly, provided the size of the stack allocated to the created tasks does not change.
-#### Heap3
-- uses the standard library malloc() and free() functions, so the size of the heap is defined by the linker configuration, and the configTOTAL_HEAP_SIZE setting has no affect.
 
-#### Heap4
+- retained for backward compatibility and not recommended for new designs
+- uses a best-fit algorithm to select the smallest free block that satisfies an allocation
+- suitable only for limited allocation patterns because it does not coalesce adjacent free blocks
+
+#### `heap_3`
+
+- wraps the standard library's `malloc()` and `free()`; the linker configuration defines the available heap, and `configTOTAL_HEAP_SIZE` has no effect
+
+#### `heap_4`
+
 ![image.png](https://cdn.jsdelivr.net/gh/TANG617/images/202408281957948.png)
-*C* shows the situation after a FreeRTOS queue has been created.
-*D* shows the situation after pvPortMalloc() has been called directly from application
+_C_ shows the state after a FreeRTOS queue has been created. _D_ shows the state after the application has called `pvPortMalloc()` directly.
 
-code, rather than indirectly by calling a FreeRTOS API function.
 - the array is statically declared, and dimensioned by configTOTAL_HEAP_SIZE
-- heap_4 combines (coalescences) adjacent free blocks of memory into a single larger block, which minimizes the risk of memory fragmentation.
+- `heap_4` coalesces adjacent free blocks into a larger block, which reduces external fragmentation.
 - Note that, unlike when heap_2 was demonstrated, the memory freed when the TCB was deleted, and the memory freed when the stack was deleted, does not remain as two separate free blocks, but is instead combined to create a larger single free block.
-- Heap_4 is not deterministic, but is faster than most standard library implementations of malloc() and free().
+- Its execution time depends on the state of the free list, so it should not be treated as strictly constant-time.
 
 Start address for heap_4 can be set.
 
-#### Heap5
-Almost identical as heap_4 but:
-- heap_5 can allocate memory from multiple and separated memory spaces, instead of single statically declared array.
-- When heap_5 is used, vPortDefineHeapRegions() must be called before any kernel objects (tasks, queues, semaphores, etc.) can be created.
+#### `heap_5`
 
-## Chapter 3: Task Management
+`heap_5` is almost identical to `heap_4`, except that:
+
+- it can allocate memory from multiple non-contiguous regions instead of one statically declared array;
+- `vPortDefineHeapRegions()` must be called before creating any kernel object.
+
+## Task management
+
 ![image.png](https://cdn.jsdelivr.net/gh/TANG617/images/202408291133656.png)
 
 - FreeRTOS tasks must not be allowed to return from their implementing function in any way—they must not contain a ‘return’ statement and must not be allowed to execute past the end of the function.
 - The FreeRTOS scheduler is the only entity that can switch a task in and out.
-- time slice: the scheduler itself must execute at the end of each time slice
+- with time slicing enabled, the scheduler can rotate between ready tasks of equal priority on tick interrupts
 
-
-### State
+### States
 
 ![image.png](https://cdn.jsdelivr.net/gh/TANG617/images/202408291140840.png)
 
 #### The Blocked State
-a sub-state of not-running
-- time-related events, at delay moment
-- synchronization events, waiting for another task or interrupt
+
+Blocked tasks wait for a time-related event or a synchronization event from another task or interrupt.
 
 #### The Suspended State
-a sub-state of not-running
-Tasks in the Suspended state are not available to the scheduler. The only way into the Suspended state is through a call to the vTaskSuspend() API function, the only way out being through a call to the vTaskResume() or xTaskResumeFromISR() API functions. Most applications do not use the Suspended state.
+
+Suspended tasks are unavailable to the scheduler. `vTaskSuspend()` enters this state, while `vTaskResume()` or `xTaskResumeFromISR()` leaves it.
 
 #### The Ready State
-They are able to run, and therefore ‘ready’ to run, but are not currently in the Running state.
 
-### Scheduling Policy
+Ready tasks can run but are not currently in the Running state.
+
+### Scheduling policies
+
 #### Prioritized Pre-emptive Scheduling with Time Slicing
+
 ![image.png](https://cdn.jsdelivr.net/gh/TANG617/images/202408291152518.png)
 ![image.png](https://cdn.jsdelivr.net/gh/TANG617/images/202408291200867.png)
-Time slicing make Task2 and Idle task switch in turns at the time slice entry.
+Time slicing lets equal-priority ready tasks take turns running.
 
 ![image.png](https://cdn.jsdelivr.net/gh/TANG617/images/202408291203716.png)
 When configIDLE_SHOULD_YIELD is set to 1, the task selected to enter the Running state after the Idle task does not execute for an entire time slice, but instead executes for whatever remains of the time slice during which the Idle task yielded.
+
 #### Prioritized Pre-emptive Scheduling (without Time Slicing)
+
 ![image.png](https://cdn.jsdelivr.net/gh/TANG617/images/202408291205077.png)
+
 - fewer task context switches
 - tasks of equal priority receiving greatly different amounts of processing time
 
 #### Co-operative Scheduling
+
 ![image.png](https://cdn.jsdelivr.net/gh/TANG617/images/202408291209751.png)
+
 - Tasks are never pre-empted
 - Time slicing cannot be used
 
+## Interrupt management
 
+Keep interrupt service routines (ISRs) short: acknowledge or capture the event, then defer longer processing to a task. FreeRTOS provides ISR-safe APIs such as `xTaskNotifyFromISR()`, `xSemaphoreGiveFromISR()`, and `xQueueSendFromISR()`.
 
+### Deferred interrupt processing
+
+Give the deferred-handler task a sufficiently high **task priority** so that it can run promptly after the ISR unblocks it. Task priority and hardware interrupt priority are separate concepts.
+
+![Deferred interrupt processing](https://cdn.jsdelivr.net/gh/TANG617/images/202412251123793.png)
+
+### Semaphores, queues, and task notifications
+
+A binary semaphore records whether an event is available; a counting semaphore records how many events are pending. FreeRTOS implements semaphores using its queue infrastructure, but giving a semaphore does not copy an application payload.
+
+Use a queue when the ISR must transfer fixed-size data to a task. Use a task notification when a single task is the recipient and the lighter-weight notification semantics are sufficient.
+
+After an ISR unblocks a higher-priority task, request a context switch with the port-specific macro, commonly `portYIELD_FROM_ISR()`.
+
+![Counting semaphore used from an ISR](https://cdn.jsdelivr.net/gh/TANG617/images/202412251130491.png)
