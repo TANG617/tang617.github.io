@@ -1,7 +1,7 @@
 {
   "promptDelete": false,
   "newFileLocation": "folder",
-  "newFileFolderPath": "source/_posts",
+  "newFileFolderPath": "content/posts",
   "attachmentFolderPath": "./",
   "useMarkdownLinks": true
 }
